@@ -39,6 +39,7 @@ public class MyArrayList<T> implements MyList<T> {
      */
     public MyArrayList() {
         this.container = new Object[DEFAULT_CAPACITY];
+        this.size = 0;
     }
 
     /**
@@ -47,13 +48,11 @@ public class MyArrayList<T> implements MyList<T> {
      * @throws IllegalArgumentException если указана отрицательная величина
      */
     public MyArrayList(int initSize) {
-        if (initSize > 0) {
-            this.container = new Object[initSize];
-        } else if (initSize == ZERO_CAPACITY) {
-            this.container = new Object[ZERO_CAPACITY];
-        } else {
+        if (initSize <= ZERO_CAPACITY) {
             throw new IllegalArgumentException();
         }
+        this.container = new Object[initSize];
+        this.size = 0;
     }
 
     /**
@@ -100,7 +99,7 @@ public class MyArrayList<T> implements MyList<T> {
         if (size == container.length) {
             container = increaseCapacity();
         }
-        System.arraycopy(container, index, container, index + 1, size - index); //Типо сдвигаем элементы
+        System.arraycopy(container, index, container, index + 1, size - index);
         container[index] = element;
         size++;
     }
