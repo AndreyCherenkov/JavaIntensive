@@ -48,7 +48,6 @@ class MyArrayListTest {
         assertEquals("999", stringMyList.get(999));
     }
 
-
     @Test
     void whenGetIndexIs1000ThenThrowsException() {
         try {
@@ -123,7 +122,14 @@ class MyArrayListTest {
         }
     }
 
-    //Tests for add
+    @Test
+    void whenListIsEmptyAndIndex0ThenExceptionDoesNotThrow() {
+        MyList<Object> myList = new MyArrayList<>();
+        myList.add(0, 9999);
+        assertEquals(9999, myList.get(0));
+    }
+
+    //Tests for add(T element)
     @Test
     void whenAddAtIndexIsNegativeThenThrowsException() {
         try {
@@ -137,13 +143,6 @@ class MyArrayListTest {
     void whenAddOneMoreElementThenTheLastOneIsAddedElement() {
         integerMyList.add(9999);
         assertEquals(9999, integerMyList.get(1000));
-    }
-
-    @Test
-    void whenListIsEmptyAndIndex0ThenExceptionDoesNotThrow() {
-        MyList<Object> myList = new MyArrayList<>();
-        myList.add(0, 9999);
-        assertEquals(9999, myList.get(0));
     }
 
     //Tests for remove(int index)

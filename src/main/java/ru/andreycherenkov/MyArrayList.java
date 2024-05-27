@@ -65,12 +65,13 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     /**
-     * Вспомогательный метод для проверки границ массива.
+     * Вспомогательный метод для проверки границ массива. Применяется во всех методах проверки,
+     * кроме add(int index, T element).
      * @param index проверяемая граница
      * @throws IndexOutOfBoundsException если граница отрицательная или проверяемое значение превышает size
      */
     private void checkBounds(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -95,7 +96,9 @@ public class MyArrayList<T> implements MyList<T> {
      */
     @Override
     public void add(int index, T element) {
-        checkBounds(index);
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
         if (size == container.length) {
             container = increaseCapacity();
         }
