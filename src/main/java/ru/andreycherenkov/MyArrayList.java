@@ -70,7 +70,7 @@ public class MyArrayList<T> implements MyList<T> {
      * @throws IndexOutOfBoundsException если граница отрицательная или проверяемое значение превышает size
      */
     private void checkBounds(int index) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
     }
