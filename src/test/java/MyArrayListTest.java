@@ -284,6 +284,20 @@ class MyArrayListTest {
         assertEquals(stringMyList1, stringMyList);
     }
 
+    @Test
+    void whenListContainsDifferentTypesThenReturnException() {
+        MyList<Object> objectMyList = new MyArrayList<>();
+        objectMyList.add("123aada");
+        objectMyList.add(12);
+        objectMyList.add(1L);
+        objectMyList.add('.');
+        try {
+            objectMyList.quickSort();
+        } catch (ClassCastException e) {
+            assertNotNull(e);
+        }
+    }
+
     //Tests for contains
     @Test
     void when1000InListThenContainsReturnTrue() {
